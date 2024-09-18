@@ -71,7 +71,7 @@ pip install -r requirements.txt
 
 - 该工具仅用于学习和交流，请勿用于商业用途。
 - 请妥善保管你的登录信息，确保账号和密码安全。
-- 
+
 - ## 许可证
 
 本项目基于 [MIT License](./LICENSE) 许可发布。详细信息请参阅 LICENSE 文件。
