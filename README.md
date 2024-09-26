@@ -23,8 +23,8 @@
 1. **克隆仓库或下载源代码**：
 
    ```bash
-   git clone https://github.com/yourusername/lgxt-assistant.git
-   cd lgxt-assistant
+   git clone https://github.com/zygame1314/LGXT-Assistant.git
+   cd LGXT-Assistant
    ```
 
 2. **安装依赖**：
