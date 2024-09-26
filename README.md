@@ -54,11 +54,18 @@
 如果你选择使用 Python 运行程序，请确保安装以下依赖库：
 
 ```txt
+configparser
+io
+os
+base64
+threading
+tkinter
+keyring
 requests
 ttkbootstrap
 Pillow
 python-docx
-keyring
+reportlab
 ```
 
 可以通过以下命令自动安装所有依赖：
