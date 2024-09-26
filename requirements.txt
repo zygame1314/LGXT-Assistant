@@ -1,5 +1,12 @@
+configparser
+io
+os
+base64
+threading
+tkinter
+keyring
 requests
 ttkbootstrap
 Pillow
 python-docx
-keyring
+reportlab
