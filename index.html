@@ -39,6 +39,17 @@
             pointer-events: none;
         }
 
+        .glow {
+            position: fixed;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
@@ -56,24 +67,34 @@
             overflow: hidden;
         }
 
-        header::before {
-            content: '';
+        .particles-container {
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 70%);
-            animation: rotate 20s linear infinite;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: radial-gradient(circle at center, var(--primary-color), var(--secondary-color));
+            overflow: hidden;
         }
 
-        @keyframes rotate {
-            0% {
-                transform: rotate(0deg);
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 50%;
+            transform: translateY(100vh);
+            animation: moveParticle linear infinite;
+        }
+
+        @keyframes moveParticle {
+            from {
+                transform: translateY(100vh);
+                opacity: 1;
             }
 
-            100% {
-                transform: rotate(360deg);
+            to {
+                transform: translateY(-100vh);
+                opacity: 0;
             }
         }
 
@@ -276,24 +297,119 @@
         }
 
         footer {
-            background-color: #333;
+            background: linear-gradient(135deg, #4a90e2, #f39c12);
             color: white;
             text-align: center;
-            padding: 20px 0;
+            padding: 60px 0 40px;
             margin-top: 60px;
             position: relative;
             overflow: hidden;
         }
 
-        footer::before {
-            content: '';
+        .footer-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-waves {
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0) 70%);
-            animation: rotate 30s linear infinite;
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+
+        .footer-waves svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 60px;
+        }
+
+        .footer-waves .shape-fill {
+            fill: #f0f4f8;
+        }
+
+        .footer-content p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-5px);
+            color: #f39c12;
+        }
+
+        /* 波浪动画 */
+        .waves {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+            transform: rotate(180deg);
+        }
+
+        .waves svg {
+            position: relative;
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 60px;
+            transform: rotateY(180deg);
+        }
+
+        .waves .shape-fill {
+            fill: #f0f4f8;
+        }
+
+        .parallax>use {
+            animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+        }
+
+        .parallax>use:nth-child(1) {
+            animation-delay: -2s;
+            animation-duration: 7s;
+        }
+
+        .parallax>use:nth-child(2) {
+            animation-delay: -3s;
+            animation-duration: 10s;
+        }
+
+        .parallax>use:nth-child(3) {
+            animation-delay: -4s;
+            animation-duration: 13s;
+        }
+
+        .parallax>use:nth-child(4) {
+            animation-delay: -5s;
+            animation-duration: 20s;
+        }
+
+        @keyframes move-forever {
+            0% {
+                transform: translate3d(-90px, 0, 0);
+            }
+
+            100% {
+                transform: translate3d(85px, 0, 0);
+            }
         }
 
         .github-section {
@@ -505,6 +621,14 @@
             transition: transform 0.5s ease;
         }
 
+        #tutorial-video {
+            width: 100%;
+            height: auto;
+            display: none;
+            max-height: 450px;
+            object-fit: cover;
+        }
+
         .video-thumbnail::after {
             content: '';
             position: absolute;
@@ -610,14 +734,17 @@
         }
 
         .video-credit p.quote {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             font-size: 2rem;
             font-weight: bold;
             color: #2c3e50;
-            text-align: center;
             margin-top: 40px;
-            position: relative;
             cursor: pointer;
             transition: color 0.3s ease;
+            flex-wrap: nowrap;
+            white-space: nowrap;
         }
 
         .video-credit p.quote .answer {
@@ -631,20 +758,17 @@
         .video-credit p.quote::before,
         .video-credit p.quote::after {
             content: '';
-            position: absolute;
-            width: 100px;
+            flex: 1;
             height: 2px;
             background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
-            top: 50%;
-            transform: translateY(-50%);
         }
 
         .video-credit p.quote::before {
-            left: 0;
+            margin-right: 10px;
         }
 
         .video-credit p.quote::after {
-            right: 0;
+            margin-left: 10px;
         }
 
         @keyframes pulse {
@@ -704,6 +828,10 @@
             .version-slider {
                 width: 90%;
             }
+
+            .waves svg {
+                height: 40px;
+            }
         }
     </style>
 </head>
@@ -711,7 +839,10 @@
 <body>
     <div class="background-animation"></div>
 
+    <div class="glow"></div>
+
     <header>
+        <div class="particles-container"></div>
         <h1>理工学堂助手使用教程</h1>
         <p class="subtitle">轻松管理课程，高效完成作业</p>
         <div class="download-buttons">
@@ -841,33 +972,30 @@
                 </div>
             </div>
 
-            <section class="video-section">
+            <div class="video-section">
                 <h2 class="video-title">教程视频</h2>
                 <div class="video-decoration left"></div>
                 <div class="video-decoration right"></div>
                 <div class="video-container">
                     <div class="video-thumbnail">
-                        <img src="素材/理工学堂通关视频封面.jpg"
-                            alt="Video Thumbnail">
+                        <img src="素材/理工学堂通关视频封面.jpg" alt="Video Thumbnail">
                         <div class="play-button">
                             <svg class="play-icon" viewBox="0 0 64 64">
                                 <polygon points="23,15 23,49 49,32" fill="#ffffff" />
                             </svg>
                         </div>
                     </div>
-                    <iframe
-                        src="素材/理工学堂通关视频.mp4"
-                        frameborder="0" allowfullscreen></iframe>
+                    <video id="tutorial-video" src="素材/理工学堂通关视频.mp4" controls style="display: none;"></video>
                 </div>
                 <div class="video-info">
-                    <p class="video-description">观看教程视频，快速上手理工学堂助手。</p>
+                    <p class="video-description">观看视频，快速上手。</p>
                     <div class="video-credit">
                         <p>感谢 <a href="https://space.bilibili.com/447984324" target="_blank"
                                 rel="noopener noreferrer">@毫厘之寻</a> 制作的教程视频。</p>
                         <p class="quote" id="quote">以一灯传诸灯 <span class="answer" id="answer"></span></p>
                     </div>
                 </div>
-            </section>
+            </div>
 
             <div class="github-section">
                 <div class="github-logo">
@@ -896,7 +1024,29 @@
             </div>
 
             <footer>
-                <p>&copy; 2024 zygame1314 | 版权所有</p>
+                <div class="waves">
+                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+                        <defs>
+                            <path id="gentle-wave"
+                                d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+                        </defs>
+                        <g class="parallax">
+                            <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+                            <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+                            <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+                            <use xlink:href="#gentle-wave" x="48" y="7" fill="#f0f4f8" />
+                        </g>
+                    </svg>
+                </div>
+                <div class="footer-content">
+                    <p>&copy; 2024 zygame1314 | 版权所有</p>
+                    <p>岂曰无衣，与子同裳。</p>
+                    <div class="social-icons">
+                        <a href="https://github.com/zygame1314" target="_blank"><i class="fab fa-github"></i></a>
+                        <a href="https://gitee.com/zygame1314" target="_blank"><i class="fas fa-code-branch"></i></a>
+                    </div>
+                </div>
             </footer>
 
             <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
@@ -907,44 +1057,110 @@
                     offset: 100
                 });
 
-                function createBackgroundAnimation() {
-                    const shapes = ['circle', 'triangle', 'square'];
-                    const colors = ['#4a90e2', '#f39c12', '#2ecc71', '#e74c3c', '#9b59b6'];
+                function createEnhancedBackgroundAnimation() {
+                    const shapes = ['circle', 'triangle', 'square', 'pentagon', 'star'];
+                    const colors = ['#4a90e2', '#f39c12', '#2ecc71', '#e74c3c', '#9b59b6', '#34495e', '#1abc9c'];
                     const animationContainer = document.querySelector('.background-animation');
+
+                    const fragment = document.createDocumentFragment();
 
                     for (let i = 0; i < 50; i++) {
                         const shape = document.createElement('div');
                         const randomShape = shapes[Math.floor(Math.random() * shapes.length)];
                         const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                        const size = Math.random() * 30 + 10;
+                        const size = Math.random() * 50 + 20;
 
                         shape.style.position = 'absolute';
                         shape.style.width = `${size}px`;
                         shape.style.height = `${size}px`;
                         shape.style.backgroundColor = randomColor;
-                        shape.style.opacity = '0.5';
+                        shape.style.opacity = '1';
                         shape.style.left = `${Math.random() * 100}%`;
                         shape.style.top = `${Math.random() * 100}%`;
 
-                        if (randomShape === 'circle') {
-                            shape.style.borderRadius = '50%';
-                        } else if (randomShape === 'triangle') {
-                            shape.style.width = '0';
-                            shape.style.height = '0';
-                            shape.style.backgroundColor = 'transparent';
-                            shape.style.borderLeft = `${size / 2}px solid transparent`;
-                            shape.style.borderRight = `${size / 2}px solid transparent`;
-                            shape.style.borderBottom = `${size}px solid ${randomColor}`;
+                        shape.style.transform = `translateZ(${Math.random() * 500 - 250}px)`;
+                        shape.style.backfaceVisibility = 'hidden';
+
+                        const duration = Math.random() * 20 + 10;
+                        const floatKeyframes = `
+                            @keyframes Backgroundfloat${i} {
+                                0%, 100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+                                25% { transform: translate3d(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px, ${Math.random() * 200 - 100}px) rotate(${Math.random() * 360}deg); }
+                                50% { transform: translate3d(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px, ${Math.random() * 200 - 100}px) rotate(${Math.random() * 360}deg); }
+                                75% { transform: translate3d(${Math.random() * 100 - 50}px, ${Math.random() * 100 - 50}px, ${Math.random() * 200 - 100}px) rotate(${Math.random() * 360}deg); }
+                            }
+                        `;
+                        const styleElement = document.createElement('style');
+                        styleElement.textContent = floatKeyframes;
+                        document.head.appendChild(styleElement);
+
+                        shape.style.animation = `Backgroundfloat${i} ${duration}s ease-in-out infinite`;
+
+                        switch (randomShape) {
+                            case 'circle':
+                                shape.style.borderRadius = '50%';
+                                break;
+                            case 'triangle':
+                                shape.style.width = '0';
+                                shape.style.height = '0';
+                                shape.style.backgroundColor = 'transparent';
+                                shape.style.borderLeft = `${size / 2}px solid transparent`;
+                                shape.style.borderRight = `${size / 2}px solid transparent`;
+                                shape.style.borderBottom = `${size}px solid ${randomColor}`;
+                                break;
+                            case 'pentagon':
+                                shape.style.clipPath = 'polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%)';
+                                break;
+                            case 'star':
+                                shape.style.clipPath = 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%)';
+                                break;
                         }
 
-                        shape.style.animation = `float ${Math.random() * 10 + 5}s linear infinite`;
-                        shape.style.animationDelay = `${Math.random() * 5}s`;
+                        fragment.appendChild(shape);
+                    }
 
-                        animationContainer.appendChild(shape);
+                    animationContainer.appendChild(fragment);
+
+                    animationContainer.addEventListener('mousemove', (e) => {
+                        const mouseX = e.clientX / window.innerWidth;
+                        const mouseY = e.clientY / window.innerHeight;
+
+                        Array.from(animationContainer.children).forEach((shape) => {
+                            const rect = shape.getBoundingClientRect();
+                            const centerX = rect.left + rect.width / 2;
+                            const centerY = rect.top + rect.height / 2;
+
+                            const distanceX = (mouseX - centerX / window.innerWidth) * 20;
+                            const distanceY = (mouseY - centerY / window.innerHeight) * 20;
+
+                            shape.style.transform += ` translate(${distanceX}px, ${distanceY}px)`;
+                        });
+                    });
+                }
+
+                createEnhancedBackgroundAnimation();
+
+                function createParticles() {
+                    const container = document.querySelector('.particles-container');
+                    const particleCount = 50;
+
+                    for (let i = 0; i < particleCount; i++) {
+                        const particle = document.createElement('div');
+                        particle.classList.add('particle');
+
+                        const size = Math.random() * 5 + 5;
+                        particle.style.width = `${size}px`;
+                        particle.style.height = `${size}px`;
+
+                        particle.style.left = `${Math.random() * 100}%`;
+                        particle.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                        particle.style.animationDelay = `${Math.random() * 5}s`;
+
+                        container.appendChild(particle);
                     }
                 }
 
-                createBackgroundAnimation();
+                createParticles();
 
                 const style = document.createElement('style');
                 style.textContent = `
@@ -984,8 +1200,9 @@
 
                 document.querySelector('.video-thumbnail').addEventListener('click', function () {
                     this.style.display = 'none';
-                    var iframe = document.querySelector('.video-container iframe');
-                    iframe.style.display = 'block';
+                    var video = document.getElementById('tutorial-video');
+                    video.style.display = 'block';
+                    video.play();
                 });
 
                 document.addEventListener('DOMContentLoaded', function () {
