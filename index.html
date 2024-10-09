@@ -833,6 +833,56 @@
                 height: 40px;
             }
         }
+
+        .personal-homepage-section {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 10px;
+            padding: 50px;
+            margin-top: 70px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .personal-homepage-section:hover {
+            transform: translateY(-5px);
+        }
+
+        .personal-homepage-section h2 {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .personal-homepage-section p {
+            font-size: 1.1rem;
+            color: #34495e;
+            margin-bottom: 35px;
+            line-height: 1.8;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .personal-homepage-section .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 15px 35px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .personal-homepage-section .btn:hover {
+            background-color: #e67e22;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
     </style>
 </head>
 
@@ -1021,6 +1071,12 @@
                 <a href="https://gitee.com/zygame1314/LGXT-Assistant" target="_blank" class="github-btn">
                     <i class="fas fa-code-branch"></i> 前往 Gitee 仓库
                 </a>
+            </div>
+
+            <div class="personal-homepage-section">
+                <h2>我的个人主页</h2>
+                <p>欢迎访问我的个人主页，了解更多我的项目和动态。</p>
+                <a href="https://zygame1314.site" target="_blank" class="btn">访问我的主页</a>
             </div>
 
             <footer>
