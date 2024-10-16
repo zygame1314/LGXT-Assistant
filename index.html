@@ -145,7 +145,7 @@
 
         .slider-indicator {
             position: absolute;
-            width: 50%;
+            width: 33.33%;
             height: 100%;
             background-color: var(--primary-color);
             border-radius: 25px;
@@ -166,6 +166,30 @@
 
         .version-content {
             flex: 0 0 100%;
+        }
+
+        .version-content a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: bold;
+            border-bottom: 2px solid transparent;
+            transition: color 0.3s ease, border-bottom 0.3s ease;
+        }
+
+        .version-content a:hover {
+            color: var(--secondary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            transform: scale(1.05);
+        }
+
+        .version-content a::before {
+            content: '➤ ';
+            color: var(--secondary-color);
+            transition: transform 0.3s ease;
+        }
+
+        .version-content a:hover::before {
+            transform: translateX(5px);
         }
 
         .steps {
@@ -834,56 +858,6 @@
             }
         }
 
-        .personal-homepage-section {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 10px;
-            padding: 50px;
-            margin-top: 70px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .personal-homepage-section:hover {
-            transform: translateY(-5px);
-        }
-
-        .personal-homepage-section h2 {
-            font-size: 2.2rem;
-            color: #2c3e50;
-            margin-bottom: 25px;
-            position: relative;
-        }
-
-        .personal-homepage-section p {
-            font-size: 1.1rem;
-            color: #34495e;
-            margin-bottom: 35px;
-            line-height: 1.8;
-            max-width: 800px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .personal-homepage-section .btn {
-            display: inline-block;
-            background-color: var(--secondary-color);
-            color: white;
-            padding: 15px 35px;
-            border-radius: 30px;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .personal-homepage-section .btn:hover {
-            background-color: #e67e22;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-
         .beian-link {
             color: var(--primary-color);
             font-weight: bold;
@@ -915,6 +889,8 @@
                 class="download-btn">下载 EXE 版本</a>
             <a href="https://gitee.com/zygame1314/LGXT-Assistant/releases/download/1.1.1/%E7%90%86%E5%B7%A5%E5%AD%A6%E5%A0%82%E5%8A%A9%E6%89%8B.pyw"
                 class="download-btn">下载 Python 版本</a>
+            <a href="https://greasyfork.org/zh-CN/scripts/512465-%E7%90%86%E5%B7%A5%E5%AD%A6%E5%A0%82%E5%8A%A9%E6%89%8B"
+                class="download-btn">下载油猴脚本</a>
         </div>
     </header>
 
@@ -923,6 +899,7 @@
             <div class="slider-indicator"></div>
             <div class="slider-option active" data-version="exe">EXE 版本</div>
             <div class="slider-option" data-version="python">Python 版本</div>
+            <div class="slider-option" data-version="tampermonkey">油猴脚本</div>
         </div>
 
         <div class="steps-container">
@@ -933,7 +910,9 @@
                             <div class="step-icon"><i class="fas fa-download"></i></div>
                             <h2>下载与安装</h2>
                             <div class="step-content">
-                                <p>从下载理工学堂助手的最新 EXE 版本，点开即用。</p>
+                                <p><a
+                                        href="https://gitee.com/zygame1314/LGXT-Assistant/releases/download/1.1.1/%E7%90%86%E5%B7%A5%E5%AD%A6%E5%A0%82%E5%8A%A9%E6%89%8B.exe">下载理工学堂助手的最新
+                                        EXE 版本</a>，点开即用。</p>
                             </div>
                         </div>
 
@@ -985,7 +964,8 @@
                             <div class="step-icon"><i class="fab fa-python"></i></div>
                             <h2>环境准备</h2>
                             <div class="step-content">
-                                <p>确保你的电脑已安装 Python 3.7 或更高版本。建议从 Python 官网下载并安装。</p>
+                                <p>确保你的电脑已安装 Python 3.7 或更高版本。建议从<a href="https://www.python.org/downloads/"
+                                        target="_blank">Python 官网</a>下载并安装。</p>
                             </div>
                         </div>
 
@@ -993,7 +973,9 @@
                             <div class="step-icon"><i class="fas fa-download"></i></div>
                             <h2>下载源码</h2>
                             <div class="step-content">
-                                <p>下载理工学堂助手的 Python 文件。</p>
+                                <p>下载<a href="https://gitee.com/zygame1314/LGXT-Assistant/releases/download/1.1.1/%E7%90%86%E5%B7%A5%E5%AD%A6%E5%A0%82%E5%8A%A9%E6%89%8B.pyw"
+                                        target="_blank">理工学堂助手的 Python
+                                        文件</a>。</p>
                             </div>
                         </div>
 
@@ -1001,7 +983,9 @@
                             <div class="step-icon"><i class="fas fa-terminal"></i></div>
                             <h2>安装依赖</h2>
                             <div class="step-content">
-                                <p>在项目中下载 requirements.txt 文件，运行 <code>pip install -r requirements.txt</code> 安装所需的依赖包。
+                                <p>在项目中下载 <a href="https://gitee.com/zygame1314/LGXT-Assistant/raw/main/requirements.txt
+                                    " target="_blank">requirements.txt 文件</a>，运行
+                                    <code>pip install -r requirements.txt</code> 安装所需的依赖包。
                                 </p>
                             </div>
                         </div>
@@ -1032,6 +1016,67 @@
                     </div>
                 </div>
 
+                <div class="version-content" id="tampermonkey-version">
+                    <div class="steps">
+                        <div class="step" data-aos="fade-up">
+                            <div class="step-icon"><i class="fas fa-globe"></i></div>
+                            <h2>安装油猴扩展</h2>
+                            <div class="step-content">
+                                <p>首先，确保你的浏览器已安装 Tampermonkey 或 Violentmonkey 扩展程序。</p>
+                                <p>你可以从 <a href="https://www.tampermonkey.net" target="_blank">Tampermonkey 官网</a> 或 <a
+                                        href="https://violentmonkey.github.io" target="_blank">Violentmonkey 官网</a>
+                                    下载和安装。</p>
+                            </div>
+                        </div>
+
+                        <div class="step" data-aos="fade-up" data-aos-delay="100">
+                            <div class="step-icon"><i class="fas fa-download"></i></div>
+                            <h2>下载油猴脚本</h2>
+                            <div class="step-content">
+                                <p>点击下面的链接下载并安装理工学堂助手的油猴脚本：</p>
+                                <p><a
+                                        href="https://greasyfork.org/zh-CN/scripts/512465-%E7%90%86%E5%B7%A5%E5%AD%A6%E5%A0%82%E5%8A%A9%E6%89%8B">下载油猴脚本</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="step" data-aos="fade-up" data-aos-delay="200">
+                            <div class="step-icon"><i class="fas fa-tools"></i></div>
+                            <h2>配置脚本</h2>
+                            <div class="step-content">
+                                <p>在安装完成后，即可进入油猴脚本的管理界面查看已安装的脚本。你可以根据需要调整脚本的设置。</p>
+                            </div>
+                        </div>
+
+                        <div class="step" data-aos="fade-up" data-aos-delay="300">
+                            <div class="step-icon"><i class="fas fa-play"></i></div>
+                            <h2>运行与使用</h2>
+                            <div class="step-content">
+                                <p>打开理工学堂，脚本会自动运行。</p>
+                            </div>
+                        </div>
+
+                        <div class="step" data-aos="fade-up" data-aos-delay="400">
+                            <div class="step-icon"><i class="fas fa-sync-alt"></i></div>
+                            <h2>更新与反馈</h2>
+                            <div class="step-content">
+                                <p>你可以在 <a
+                                        href="https://greasyfork.org/zh-CN/scripts/512465-%E7%90%86%E5%B7%A5%E5%AD%A6%E5%A0%82%E5%8A%A9%E6%89%8B"
+                                        target="_blank">油猴脚本页面</a> 关注脚本的更新。如果有任何问题或建议，可以提交反馈。</p>
+                            </div>
+                        </div>
+
+                        <div class="step" data-aos="fade-up" data-aos-delay="500">
+                            <div class="step-icon"><i class="fas fa-lightbulb"></i></div>
+                            <h2>脚本原理</h2>
+                            <div class="step-content">
+                                <p>该脚本通过发送 API 请求与理工学堂后台交互，获取用户的课程、作业等数据。</p>
+                                <p>你可以查看油猴脚本的源码，了解其与 API 的交互细节，也可以根据自己的需求修改脚本以增加新功能。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="cta" data-aos="zoom-in">
                     <a href="#" class="btn">立即下载</a>
                 </div>
@@ -1043,14 +1088,17 @@
                 <div class="video-decoration right"></div>
                 <div class="video-container">
                     <div class="video-thumbnail">
-                        <img src="https://jsd.proxy.aks.moe/gh/zygame1314/LGXT-Assistant@latest/素材/理工学堂通关视频封面.jpg" alt="Video Thumbnail">
+                        <img src="https://jsd.proxy.aks.moe/gh/zygame1314/LGXT-Assistant@latest/素材/理工学堂通关视频封面.jpg"
+                            alt="Video Thumbnail">
                         <div class="play-button">
                             <svg class="play-icon" viewBox="0 0 64 64">
                                 <polygon points="23,15 23,49 49,32" fill="#ffffff" />
                             </svg>
                         </div>
                     </div>
-                    <video id="tutorial-video" src="https://jsd.proxy.aks.moe/gh/zygame1314/LGXT-Assistant@latest/素材/理工学堂通关视频.mp4" controls style="display: none;"></video>
+                    <video id="tutorial-video"
+                        src="https://jsd.proxy.aks.moe/gh/zygame1314/LGXT-Assistant@latest/素材/理工学堂通关视频.mp4" controls
+                        style="display: none;"></video>
                 </div>
                 <div class="video-info">
                     <p class="video-description">观看视频，快速上手。</p>
@@ -1088,10 +1136,17 @@
                 </a>
             </div>
 
-            <div class="personal-homepage-section">
-                <h2>我的个人主页</h2>
-                <p>欢迎访问我的个人主页，了解更多我的项目和动态。</p>
-                <a href="https://zygame1314.site" target="_blank" class="btn">访问我的主页</a>
+            <div class="github-section">
+                <div class="github-logo">
+                    <i class="fas fa-home"></i>
+                </div>
+                <h2 class="github-title">个人主页</h2>
+                <p class="github-description">
+                    欢迎访问我的个人主页，了解更多我的项目和动态。
+                </p>
+                <a href="https://zygame1314.site" target="_blank" class="github-btn">
+                    <i class="fas fa-external-link-alt"></i> 访问我的主页
+                </a>
             </div>
 
             <footer>
@@ -1117,11 +1172,12 @@
                     <div class="social-icons">
                         <a href="https://github.com/zygame1314" target="_blank"><i class="fab fa-github"></i></a>
                         <a href="https://gitee.com/zygame1314" target="_blank"><i class="fas fa-code-branch"></i></a>
+                        <a href="https://zygame1314.site" target="_blank"><i class="fas fa-home"></i></a>
                     </div>
                 </div>
             </footer>
 
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+            <script src="https://sf.akass.cn/ajax/libs/aos/2.3.4/aos.js"></script>
             <script>
                 AOS.init({
                     duration: 800,
@@ -1249,11 +1305,13 @@
                 const sliderOptions = document.querySelectorAll('.slider-option');
                 const sliderIndicator = document.querySelector('.slider-indicator');
                 const stepsWrapper = document.querySelector('.steps-wrapper');
-                const versionContents = document.querySelectorAll('.version-content');
 
                 sliderOptions.forEach((option, index) => {
                     option.addEventListener('click', () => {
-                        sliderIndicator.style.transform = `translateX(${index * 100}%)`;
+                        const sliderWidth = option.parentElement.clientWidth;
+                        const indicatorWidth = sliderWidth / sliderOptions.length;
+
+                        sliderIndicator.style.transform = `translateX(${index * indicatorWidth}px)`;
 
                         sliderOptions.forEach(opt => opt.classList.remove('active'));
                         option.classList.add('active');
