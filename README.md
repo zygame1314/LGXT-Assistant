@@ -18,6 +18,10 @@
 
 如果你希望查看或修改源码，或者直接运行 Python 文件，可以按以下步骤操作：
 
+### 3. 使用油猴脚本
+
+[脚本猫](https://scriptcat.org/zh-CN/script-show-page/2774)
+
 #### 环境要求
 
 - 安装 Python 3.7 或更高版本。
