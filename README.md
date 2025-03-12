@@ -4,7 +4,7 @@
 
 ## 🔗 教程网页
 
-### https://zygame1314.github.io/LGXT-Assistant/
+### https://lgxt.zygame1314.site
 
 ## 📥 下载与使用
 
