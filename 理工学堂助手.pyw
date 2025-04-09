@@ -3,12 +3,14 @@ import io
 import os
 import base64
 import threading
+import webbrowser
 import tkinter as tk
 from tkinter import filedialog
 from tkinter.constants import *
 import keyring
 import requests
 import ttkbootstrap as ttk
+import tkinter.font as tkfont
 from PIL import Image, ImageTk
 from docx import Document
 from docx.oxml.ns import qn
@@ -241,14 +243,29 @@ class ModernApp:
             button = ttk.Button(sidebar, text=text, command=command, cursor="hand2")
             button.pack(fill=X, pady=10)
 
+        label_font = tkfont.Font(family="宋体", size=10)
+        label_font_underline = tkfont.Font(family="宋体", size=10, underline=1)
+
         separator = ttk.Separator(sidebar, orient='horizontal')
         separator.pack(fill=X, pady=20)
 
-        version_label = ttk.Label(sidebar, text="版本 1.1.0", font=("宋体", 10))
+        version_label = ttk.Label(sidebar, text="版本 1.1.1", font=label_font, cursor="hand2")
         version_label.pack(side=BOTTOM, pady=10)
+        version_label.bind("<Button-1>", self.open_web_help_interface)
+        version_label.bind("<Enter>", lambda e: version_label.configure(font=label_font_underline))
+        version_label.bind("<Leave>", lambda e: version_label.configure(font=label_font))
 
-        copyright_label = ttk.Label(sidebar, text="© 2024 zygame1314", font=("宋体", 10))
+        copyright_label = ttk.Label(sidebar, text="© 2024 zygame1314", font=label_font, cursor="hand2")
         copyright_label.pack(side=BOTTOM, pady=5)
+        copyright_label.bind("<Button-1>", self.open_github_homepage)
+        copyright_label.bind("<Enter>", lambda e: copyright_label.configure(font=label_font_underline))
+        copyright_label.bind("<Leave>", lambda e: copyright_label.configure(font=label_font))
+
+    def open_github_homepage(self, event=None):
+        webbrowser.open('https://github.com/zygame1314')
+
+    def open_web_help_interface(self, event=None):
+        webbrowser.open('https://zygame1314.github.io/LGXT-Assistant/')
 
     def show_help(self):
         help_window = ttk.Toplevel(self.root)
@@ -292,6 +309,11 @@ class ModernApp:
             "感谢你的使用！"
         )
         ttk.Label(content_frame, text=disclaimer, font=("微软雅黑", 12), justify="left").pack(anchor="w", padx=20)
+        
+        def open_tutorial():
+            webbrowser.open("https://zygame1314.github.io/LGXT-Assistant/")
+        
+        ttk.Button(content_frame, text="访问教程网页", command=open_tutorial, bootstyle='primary', cursor="hand2").pack(pady=10)
 
         ttk.Button(content_frame, text="关闭", command=help_window.destroy, bootstyle='danger', cursor="hand2").pack(pady=20)
 
