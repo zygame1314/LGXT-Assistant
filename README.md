@@ -62,24 +62,30 @@
 如果你选择使用 Python 运行程序，请确保安装以下依赖库：
 
 ```txt
-configparser
-io
-os
-base64
-threading
-tkinter
-keyring
-requests
-ttkbootstrap
-Pillow
-python-docx
-reportlab
+configparser - 用于处理配置文件
+io - 用于处理二进制数据流
+os - 用于与操作系统交互
+base64 - 用于解码嵌入的图像数据
+threading - 用于多线程操作
+webbrowser - 用于打开网页链接
+tkinter - GUI基础库
+keyring - 用于安全存储密码
+requests - 用于HTTP请求
+concurrent.futures - 用于并行处理(ThreadPoolExecutor, as_completed)
+time - 用于时间相关操作
+tkinter.font - 用于字体处理
+PIL (Pillow) - 图像处理库
+docx (python-docx) - Word文档处理
+reportlab - PDF生成库
+ttkbootstrap - 美化tkinter界面
 ```
 
 可以通过以下命令自动安装所有依赖：
 
 ```bash
 pip install -r requirements.txt
+或
+pip install configparser pillow python-docx reportlab requests keyring ttkbootstrap
 ```
 
 ## ⚠️ 注意事项
